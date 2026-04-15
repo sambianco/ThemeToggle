@@ -8,8 +8,9 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.example.themetoggle.ui.screens.theme.Theme
+import com.example.themetoggle.data.models.Theme
 import com.example.themetoggle.ui.screens.theme.ThemeScreen
 import com.example.themetoggle.ui.theme.ThemeToggleTheme
 
@@ -20,8 +21,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            var selectedTheme by remember { mutableStateOf(Theme.System) }
-            var dynamicColor by remember { mutableStateOf(true) }
+            var selectedTheme by rememberSaveable { mutableStateOf(Theme.System) }
+            var dynamicColor by rememberSaveable { mutableStateOf(true) }
 
             ThemeToggleTheme(
                 darkTheme = when (selectedTheme) {

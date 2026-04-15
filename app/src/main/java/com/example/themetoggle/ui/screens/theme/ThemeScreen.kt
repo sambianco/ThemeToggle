@@ -16,7 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.themetoggle.data.models.Theme
 
 @Composable
 fun ThemeScreen(
@@ -41,7 +43,7 @@ fun ThemeScreen(
                 RadioListItem(
                     label = theme.toString(),
                     selected = (theme == selectedTheme),
-                    onClick = { onThemeChange(theme)}
+                    onClick = { onThemeChange(theme) },
                 )
             }
             Text(
