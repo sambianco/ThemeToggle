@@ -19,7 +19,12 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ThemeScreen() {
+fun ThemeScreen(
+    selectedTheme: Theme,
+    onThemeChange: (Theme) -> Unit,
+    dynamicColor: Boolean,
+    onDynamicColorChange: (Boolean) -> Unit
+) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.secondaryContainer,
         contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
@@ -34,9 +39,9 @@ fun ThemeScreen() {
             )
             listOf("Light", "Dark", "System").forEach { theme ->
                 RadioListItem(
-                    label = theme,
-                    selected = false,
-                    onClick = {}
+                    label = theme.toString(),
+                    selected = (theme == selectedTheme),
+                    onClick = { onThemeChange(theme)}
                 )
             }
             Text(
@@ -48,8 +53,8 @@ fun ThemeScreen() {
             listOf(true, false) .forEach { dynamicColorEnabled ->
                 RadioListItem(
                     label = if (dynamicColorEnabled) "System colors" else "Custom colors",
-                    selected = false,
-                    onClick = {}
+                    selected = (dynamicColorEnabled == dynamicColor),
+                    onClick =  { onDynamicColorChange(dynamicColorEnabled) }
                 )
             }
         }
